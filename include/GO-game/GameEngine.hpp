@@ -12,11 +12,12 @@ class GameEngine {
 
     int activePlayerIndex;
     int consecutivePasses;
+
   public:
+    GameEngine();
+
     void start();
     void runLoop();
     void handlePass();
     float calculateFinalScore();
-
-    GameEngine();
 };

@@ -3,8 +3,7 @@
 #include <cctype>
 #include "../include/GO-game/ConsoleView.hpp"
 
-ConsoleView::ConsoleView() {
-}
+ConsoleView::ConsoleView() {}
 
 void ConsoleView::displayMenu() {
   std::cout << "==============================\n";

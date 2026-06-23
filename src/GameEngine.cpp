@@ -1,6 +1,8 @@
 #include "../include/GO-game/GameEngine.hpp"
 #include "../include/GO-game/ConsoleView.hpp" 
 
+GameEngine::GameEngine() : board(19), activePlayerIndex(0), consecutivePasses(0) {}
+
 void GameEngine::start() {
   players[0].setColor(Data::FieldState::BLACK);
   players[1].setColor(Data::FieldState::WHITE);

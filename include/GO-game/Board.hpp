@@ -9,6 +9,9 @@ class Board {
     std::vector<std::vector<Data::FieldState>> grid;
      
   public:
+    Board();
+    Board(int size);
+
     int getSize();
     std::vector<std::vector<Data::FieldState>> getGrid();
 
@@ -17,7 +20,4 @@ class Board {
     void placeStone(Data::Position pos, Data::FieldState color);
     int captureDeadStones(Data::Position lastMove);
     int getLibertiesCount(Data::Position pos);
-
-    Board();
-    Board(int size) :size(size) {}
 };

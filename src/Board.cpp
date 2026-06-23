@@ -2,15 +2,17 @@
 #include <queue>
 #include <set>
 
+Board::Board() : size(19), grid(19, std::vector<Data::FieldState>(19, Data::FieldState::EMPTY)) {
+}
+Board::Board(int boardSize) : size(boardSize), grid(boardSize, std::vector<Data::FieldState>(boardSize, Data::FieldState::EMPTY)) {
+}
+
 int Board::getSize() {
   return size;
 }
 
 std::vector<std::vector<Data::FieldState>> Board::getGrid() {
   return grid;
-}
-
-Board::Board() : size(19), grid(19, std::vector<Data::FieldState>(19, Data::FieldState::EMPTY)) {
 }
 
 bool Board::isValidMove(Data::Position pos, Data::FieldState color) {

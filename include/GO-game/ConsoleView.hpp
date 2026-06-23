@@ -6,10 +6,10 @@
 
 class ConsoleView {
     public:
+      ConsoleView();
+
       void displayMenu();
       void drawBoard(Board board);
       std::optional<Data::Position> readMove();
       void showStats(Player p1, Player p2);
-
-      ConsoleView();
 };
