@@ -12,6 +12,5 @@ class Player {
     int getScore();
     void setColor(Data::FieldState playerColor);
 
-    Player();
-    Player(Data::FieldState color) :color(color), capturedPrisoners(0) {}
+    Player(Data::FieldState color);
 };

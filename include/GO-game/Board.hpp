@@ -9,6 +9,9 @@ class Board {
     std::vector<std::vector<Data::FieldState>> grid;
      
   public:
+    int getSize();
+    std::vector<std::vector<Data::FieldState>> getGrid();
+
     bool isValidMove(Data::Position pos, Data::FieldState color);
     
     void placeStone(Data::Position pos, Data::FieldState color);
