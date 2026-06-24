@@ -14,8 +14,8 @@ class GameEngine {
     int consecutivePasses;
 
   public:
-    GameEngine();
-
+    GameEngine(int boardSize);
+    
     void start();
     void runLoop();
     void handlePass();

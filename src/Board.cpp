@@ -2,10 +2,8 @@
 #include <queue>
 #include <set>
 
-Board::Board() : size(19), grid(19, std::vector<Data::FieldState>(19, Data::FieldState::EMPTY)) {
-}
-Board::Board(int boardSize) : size(boardSize), grid(boardSize, std::vector<Data::FieldState>(boardSize, Data::FieldState::EMPTY)) {
-}
+Board::Board() : size(19), grid(19, std::vector<Data::FieldState>(19, Data::FieldState::EMPTY)) {}
+Board::Board(int boardSize) : size(boardSize), grid(boardSize, std::vector<Data::FieldState>(boardSize, Data::FieldState::EMPTY)) {}
 
 int Board::getSize() {
   return size;
@@ -133,6 +131,7 @@ int Board::getLibertiesCount(Data::Position pos) {
     queue.pop();
 
     for (int i = 0; i < 4; ++i) {
+
       int nx = current.x + dx[i];
       int ny = current.y + dy[i];
 

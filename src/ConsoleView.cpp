@@ -5,15 +5,34 @@
 
 ConsoleView::ConsoleView() {}
 
-void ConsoleView::displayMenu() {
-  std::cout << "==============================\n";
-  std::cout << "          GRA W GO            \n";
-  std::cout << "==============================\n";
-  std::cout << "Wybierz rozmiar planszy, aby rozpocząć:\n";
-  std::cout << " - 9  (9x9)\n";
-  std::cout << " - 13 (13x13)\n";
-  std::cout << " - 19 (19x19)\n";
-  std::cout << "Wprowadź rozmiar: ";
+int ConsoleView::displayMenu() {
+  int size = 0;
+  
+  while (true) {
+    std::cout << "==============================\n";
+    std::cout << "          GRA W GO            \n";
+    std::cout << "==============================\n";
+    std::cout << "Wybierz rozmiar planszy, aby rozpocząć:\n";
+    std::cout << " - 9  (9x9)\n";
+    std::cout << " - 13 (13x13)\n";
+    std::cout << " - 19 (19x19)\n";
+    std::cout << "Wprowadź rozmiar: ";
+    
+    std::cin >> size;
+
+    // Zabezpieczenie na wypadek, gdyby gracz wpisał literę zamiast liczby
+    if (std::cin.fail()) {
+      std::cin.clear(); // Czyści flagę błędu
+      std::cin.ignore(10000, '\n'); // Usuwa błędne znaki z bufora
+      std::cout << "[Widok] Niepoprawny format. Wpisz liczbe!\n\n";
+    } 
+    // Sprawdzenie, czy rozmiar jest poprawny
+    else if (size == 9 || size == 13 || size == 19) {
+      return size; // Zwracamy poprawny rozmiar i wychodzimy z funkcji
+    } else {
+      std::cout << "[Widok] Nieznany rozmiar. Wybierz 9, 13 lub 19!\n\n";
+    }
+  }
 }
 
 void ConsoleView::drawBoard(Board board) {
