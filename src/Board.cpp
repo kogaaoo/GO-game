@@ -30,8 +30,6 @@ bool Board::isValidMove(Data::Position pos, Data::FieldState color) {
     return true;
   }
 
-  // Ruch bez oddechów jest dozwolony TYLKO wtedy, gdy skutkuje zbiciem kamieni przeciwnika
-  // (wtedy sam zyskuje oddechy)
   Data::FieldState opponentColor = (color == Data::FieldState::BLACK) ? Data::FieldState::WHITE : Data::FieldState::BLACK;
   int dx[] = {-1, 1, 0, 0};
   int dy[] = {0, 0, -1, 1};
@@ -76,7 +74,6 @@ int Board::captureDeadStones(Data::Position lastMove) {
       if (grid[ny][nx] == opponentColor) {
         if (getLibertiesCount(Data::Position(nx, ny)) == 0) {
           
-          // Logika usuwania grupy (BFS)
           std::queue<Data::Position> queue;
           std::vector<std::vector<bool>> visited(size, std::vector<bool>(size, false));
           

@@ -56,7 +56,6 @@ void GameEngine::handlePass() {
 
 float GameEngine::calculateFinalScore() {
 
-  // algorytm zliczający punkty
   float scorePlayer1 = players[0].getScore();
   float scorePlayer2 = players[1].getScore() + 6.5f; // Komi dla białych
   

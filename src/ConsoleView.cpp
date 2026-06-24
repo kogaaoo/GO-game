@@ -20,15 +20,13 @@ int ConsoleView::displayMenu() {
     
     std::cin >> size;
 
-    // Zabezpieczenie na wypadek, gdyby gracz wpisał literę zamiast liczby
     if (std::cin.fail()) {
-      std::cin.clear(); // Czyści flagę błędu
-      std::cin.ignore(10000, '\n'); // Usuwa błędne znaki z bufora
+      std::cin.clear();
+      std::cin.ignore(10000, '\n');
       std::cout << "[Widok] Niepoprawny format. Wpisz liczbe!\n\n";
     } 
-    // Sprawdzenie, czy rozmiar jest poprawny
     else if (size == 9 || size == 13 || size == 19) {
-      return size; // Zwracamy poprawny rozmiar i wychodzimy z funkcji
+      return size;
     } else {
       std::cout << "[Widok] Nieznany rozmiar. Wybierz 9, 13 lub 19!\n\n";
     }
@@ -37,15 +35,12 @@ int ConsoleView::displayMenu() {
 
 void ConsoleView::drawBoard(Board board) {
   std::cout << "\n   ";
-  // Rysowanie nagłówków kolumn (A, B, C...)
   for (int x = 0; x < board.getSize(); ++x) {
     std::cout << (char)('A' + x) << " ";
   }
   std::cout << "\n";
 
-  // Rysowanie rzędów wraz z ich numerami
   for (int y = 0; y < board.getSize(); ++y) {
-    // Wyrównanie numeracji rzędów (dodatkowa spacja dla jednocyfrowych)
     if (y + 1 < 10) {
       std::cout << " ";
     }
@@ -66,18 +61,15 @@ void ConsoleView::drawBoard(Board board) {
   std::cout << "\n";
 }
 
-// Pobiera współrzędne od gracza i parsuje je na strukturę Position lub obsługuje "pass"
 std::optional<Data::Position> ConsoleView::readMove() {
   std::string input;
   std::cout << "Podaj ruch (np. d4) lub wpisz 'pass': ";
   std::cin >> input;
 
-  // Konwersja wpisanego tekstu na małe litery w celu ułatwienia parsowania
   for (char &c : input) {
     c = std::tolower(c);
   }
 
-  // Obsługa spasowania tury przez gracza
   if (input == "pass") {
     return std::nullopt;
   }
@@ -86,19 +78,17 @@ std::optional<Data::Position> ConsoleView::readMove() {
     return Data::Position(-1, -1);
   }
 
-  // Parsowanie kolumny (litera, np. 'd')
   char colChar = input[0];
   if (colChar < 'a' || colChar > 'z') {
     std::cout << "[Widok] Niepoprawna litera kolumny!\n";
-    return Data::Position(-1, -1); // Zwracamy błędną pozycję, GameEngine ją odrzuci
+    return Data::Position(-1, -1);
   }
   int x = colChar - 'a';
 
-  // Parsowanie rzędu (liczba, np. "4")
   try {
     std::string rowPart = input.substr(1);
     int rowNum = std::stoi(rowPart);
-    int y = rowNum - 1; // Konwersja na indeks tablicy (od 0)
+    int y = rowNum - 1;
     return Data::Position(x, y);
   } catch (...) {
     std::cout << "[Widok] Niepoprawny format numeru rzędu!\n";
@@ -106,7 +96,6 @@ std::optional<Data::Position> ConsoleView::readMove() {
   }
 }
 
-// Wyświetla na ekranie aktualną liczbę jeńców
 void ConsoleView::showStats(Player p1, Player p2) {
   std::cout << "==============================\n";
   std::cout << "          STATYSTYKI          \n";
